@@ -109,7 +109,8 @@ end
 
 -- ## Key Commands
 
--- CoffeeScript-specific key commands.
+-- CoffeeScript-specific key commands.<br>
+-- On the Mac `Alt` is `Command`.
 _G.keys.coffeescript = {
   -- __Alt+L, M__: Open this module for editing.
   al = {
