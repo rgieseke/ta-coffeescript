@@ -20,6 +20,9 @@
 
 module('_m.coffeescript', package.seeall)
 
+-- For autocompletion and api support the JavaScript module is required.
+require('javascript')
+
 
 -- ## Settings
 
@@ -35,6 +38,24 @@ function set_buffer_properties()
 
 end
 
+-- ## Fields
+
+-- __sense__:
+-- The CoffeeScript Adeptsense.
+
+-- ## Adeptsense.
+
+-- Load JavaScript adeptsense.
+local js_sense = _m.javascript.sense
+sense = _m.textadept.adeptsense.new('coffeescript')
+sense.syntax = js_sense.syntax
+sense.api_files = js_sense.api_files
+sense:add_trigger('.')
+sense.ctags_kinds = js_sense.ctags_kinds
+sense:load_ctags(_USERHOME..'/modules/javascript/tags')
+sense.get_symbol = js_sense.get_symbol
+
+sense.api_files = { _USERHOME..'/modules/javascript/api' }
 
 -- ## Commands.
 
@@ -106,7 +127,6 @@ function insert_heredoc(char)
   buffer:end_undo_action()
 end
 
-
 -- ## Key Commands
 
 -- CoffeeScript-specific key commands.
@@ -116,6 +136,12 @@ _G.keys.coffeescript = {
     m = { io.open_file,
           (_USERHOME..'/modules/coffeescript/init.lua'):iconv('UTF-8', _CHARSET) },
     },
+  -- __Ctrl+I__: (Windows and Linux) Autocomplete symbol.<br>
+  -- __Ctrl+Esc__: (Mac OS X) Autocomplete symbol.
+  [not OSX and 'ci' or 'cesc'] = { sense.complete, sense },
+  -- __Ctrl+H__: Show documentation for the selected symbol or the symbol under
+  --   the caret.
+  ch = { sense.show_apidoc, sense },
   -- __Ctrl+J__: Insert clipboard contents enclosed in backticks for raw
   --   JavaScript.
   cj =  insert_raw_js,
@@ -127,7 +153,8 @@ _G.keys.coffeescript = {
     -- __Alt+#__: Insert Block comment.
   ['a#'] = { insert_heredoc, '#' },
 }
-
+-- __.__: When to the right of a known symbol, show an autocompletion list of
+-- fields and functions.
 
 -- ## Snippets.
 
