@@ -136,7 +136,7 @@ _G.keys.coffeescript = {
 if type(_G.snippets) == 'table' then
   _G.snippets.coffeescript = {
     -- Bound functions.
-    bfun = "%1((%2(args))) =>\n\t",
+    bfun = "%1((%2(args))) =>\n\t%0",
     -- Class.
     cla = [[
 class %1(ClassName)%2( extends %3(Ancestor))
