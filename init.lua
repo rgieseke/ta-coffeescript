@@ -128,11 +128,11 @@ _G.keys.coffeescript = {
   --   JavaScript.
   cj =  insert_raw_js,
   ['\n'] = indent,
-  -- `Alt/⌘`+`"` Insert Heredoc.
+  -- `Alt/⌘`+`"` Insert heredoc.
   ['a"'] = { insert_heredoc, '"' },
-    -- `Alt/⌘`+`'` Insert Heredoc.
+    -- `Alt/⌘`+`'` Insert heredoc.
   ["a'"] = { insert_heredoc, "'" },
-    -- `Alt/⌘`+`#`: Insert Block comment.
+    -- `Alt/⌘`+`#`: Insert block comment.
   ['a#'] = { insert_heredoc, '#' },
 }
 
