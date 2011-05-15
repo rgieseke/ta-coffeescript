@@ -6,7 +6,12 @@
 -- snippets, the latter based on Jeremy Ashkenas'
 -- [Textmate bundle](https://github.com/jashkenas/coffee-script-tmbundle).
 --
--- Installation:<br>
+-- The source is on
+-- [GitHub](https://github.com/rgieseke/textadept-coffeescript),
+-- released under the
+-- [MIT license](http://www.opensource.org/licenses/mit-license.php).
+--
+-- ## Installation
 -- Download an
 -- [archived](https://github.com/rgieseke/textadept-coffeescript/archives/master)
 -- version or clone the git repository into your `.textadept` directory:
@@ -15,8 +20,6 @@
 --       https://github.com/rgieseke/textadept-coffeescript.git \
 --       coffeescript
 --
--- Released under the
--- [MIT license](http://www.opensource.org/licenses/mit-license.php).
 
 module('_m.coffeescript', package.seeall)
 
@@ -38,7 +41,10 @@ end
 
 -- ## Commands.
 
--- Control structures after which indentation should be increased.
+-- Control structures after which indentation should be increased. Loops can
+-- be used as an expression, so the pattern need to start with a variable
+-- name, see
+-- [Loops and Comprehensions](http://jashkenas.github.com/coffee-script/#loops).
 local control_structure_patterns = {
   '^%s*class',
   '^%s*%w*%s?=?%s?for',
@@ -56,7 +62,8 @@ local control_structure_patterns = {
   '[=:]$'
 }
 
--- Increase indentation level after new line if line contains `for`, `if`, ...
+-- Increase indentation level after new line if line contains `for`,
+-- `if`, etc., but only if at the end of a line.
 local function indent()
   local buffer = buffer
   local current_pos = buffer.current_pos
@@ -81,7 +88,7 @@ local function indent()
   return false
 end
 
--- Insert clipboard contents enclosed in backticks for raw JavaScript.
+-- Insert clipboard content enclosed in backticks for raw JavaScript.
 function insert_raw_js(args)
   local buffer = buffer
   buffer:begin_undo_action()
@@ -92,7 +99,7 @@ function insert_raw_js(args)
   buffer:end_undo_action()
 end
 
--- Insert heredoc.<br>
+-- Insert [heredoc](http://jashkenas.github.com/coffee-script/#strings).<br>
 -- Parameter:<br>
 -- _char_: `"`, `'` or `#`
 function insert_heredoc(char)
@@ -110,22 +117,22 @@ end
 -- ## Key Commands
 
 -- CoffeeScript-specific key commands.<br>
--- On the Mac `Alt` is `Command`.
+-- On the Mac the `Command` key is used instead of `Alt`.
 _G.keys.coffeescript = {
-  -- __Alt+L, M__: Open this module for editing.
+  -- `Alt/⌘`+`L`, `M` Open this module for editing.
   al = {
     m = { io.open_file,
           (_USERHOME..'/modules/coffeescript/init.lua'):iconv('UTF-8', _CHARSET) },
     },
-  -- __Ctrl+J__: Insert clipboard contents enclosed in backticks for raw
+  -- `Ctrl`+`J` Insert clipboard contents enclosed in backticks for raw
   --   JavaScript.
   cj =  insert_raw_js,
   ['\n'] = indent,
-  -- __Alt+"__: Insert Heredoc.
+  -- `Alt/⌘`+`"` Insert Heredoc.
   ['a"'] = { insert_heredoc, '"' },
-    -- __Alt+'__: Insert Heredoc.
+    -- `Alt/⌘`+`'` Insert Heredoc.
   ["a'"] = { insert_heredoc, "'" },
-    -- __Alt+#__: Insert Block comment.
+    -- `Alt/⌘`+`#`: Insert Block comment.
   ['a#'] = { insert_heredoc, '#' },
 }
 
@@ -135,7 +142,7 @@ _G.keys.coffeescript = {
 -- Container for Coffeescript-specific snippets.
 if type(_G.snippets) == 'table' then
   _G.snippets.coffeescript = {
-    -- Bound functions.
+    -- Bound function.
     bfun = "%1((%2(args))) =>\n\t%0",
     -- Class.
     cla = [[
