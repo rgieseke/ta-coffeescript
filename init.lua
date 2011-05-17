@@ -1,3 +1,5 @@
+--![CoffeeScript](logo.png)
+
 -- The coffeescript module for the
 -- [Textadept](http://code.google.com/p/textadept/) editor.
 -- It provides utilities for editing
@@ -12,9 +14,10 @@
 -- [MIT license](http://www.opensource.org/licenses/mit-license.php).
 --
 -- ## Installation
--- Download an
--- [archived](https://github.com/rgieseke/textadept-coffeescript/archives/master)
--- version or clone the git repository into your `.textadept` directory:
+-- Download a
+-- [zipped](https://github.com/rgieseke/textadept-coffeescript/zipball/master)
+-- version and save the contained directory as `.textadept/modules/coffeescript`
+-- or clone the git repository:
 --     cd ~/.textadept/modules
 --     git clone \
 --       https://github.com/rgieseke/textadept-coffeescript.git \
@@ -62,8 +65,8 @@ local control_structure_patterns = {
   '[=:]$'
 }
 
--- Increase indentation level after new line if line contains `for`,
--- `if`, etc., but only if at the end of a line.
+-- Increase indentation level after new line if line contains `class`,
+-- `for`, etc., but only if at the end of a line.
 local function indent()
   local buffer = buffer
   local current_pos = buffer.current_pos
@@ -143,7 +146,7 @@ _G.keys.coffeescript = {
 if type(_G.snippets) == 'table' then
   _G.snippets.coffeescript = {
     -- Bound function.
-    bfun = "%1((%2(args))) =>\n\t%0",
+    bfun = "%1((%2(args)) )=>\n\t%0",
     -- Class.
     cla = [[
 class %1(ClassName)%2( extends %3(Ancestor))
