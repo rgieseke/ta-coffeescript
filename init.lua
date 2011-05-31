@@ -1,3 +1,5 @@
+--![CoffeeScript](logo.png)
+
 -- The coffeescript module for the
 -- [Textadept](http://code.google.com/p/textadept/) editor.
 -- It provides utilities for editing
@@ -6,17 +8,21 @@
 -- snippets, the latter based on Jeremy Ashkenas'
 -- [Textmate bundle](https://github.com/jashkenas/coffee-script-tmbundle).
 --
--- Installation:<br>
--- Download an
--- [archived](https://github.com/rgieseke/textadept-coffeescript/archives/master)
--- version or clone the git repository into your `.textadept` directory:
+-- The source is on
+-- [GitHub](https://github.com/rgieseke/textadept-coffeescript),
+-- released under the
+-- [MIT license](http://www.opensource.org/licenses/mit-license.php).
+--
+-- ## Installation
+-- Download a
+-- [zipped](https://github.com/rgieseke/textadept-coffeescript/zipball/master)
+-- version and save the contained directory as `.textadept/modules/coffeescript`
+-- or clone the git repository:
 --     cd ~/.textadept/modules
 --     git clone \
 --       https://github.com/rgieseke/textadept-coffeescript.git \
 --       coffeescript
 --
--- Released under the
--- [MIT license](http://www.opensource.org/licenses/mit-license.php).
 
 module('_m.coffeescript', package.seeall)
 
@@ -59,7 +65,10 @@ sense.api_files = { _USERHOME..'/modules/javascript/api' }
 
 -- ## Commands.
 
--- Control structures after which indentation should be increased.
+-- Control structures after which indentation should be increased. Loops can
+-- be used as an expression, so the pattern need to start with a variable
+-- name, see
+-- [Loops and Comprehensions](http://jashkenas.github.com/coffee-script/#loops).
 local control_structure_patterns = {
   '^%s*class',
   '^%s*%w*%s?=?%s?for',
@@ -77,7 +86,8 @@ local control_structure_patterns = {
   '[=:]$'
 }
 
--- Increase indentation level after new line if line contains `for`, `if`, ...
+-- Increase indentation level after new line if line contains `class`,
+-- `for`, etc., but only if at the end of a line.
 local function indent()
   local buffer = buffer
   local current_pos = buffer.current_pos
@@ -102,7 +112,7 @@ local function indent()
   return false
 end
 
--- Insert clipboard contents enclosed in backticks for raw JavaScript.
+-- Insert clipboard content enclosed in backticks for raw JavaScript.
 function insert_raw_js(args)
   local buffer = buffer
   buffer:begin_undo_action()
@@ -113,7 +123,7 @@ function insert_raw_js(args)
   buffer:end_undo_action()
 end
 
--- Insert heredoc.<br>
+-- Insert [heredoc](http://jashkenas.github.com/coffee-script/#strings).<br>
 -- Parameter:<br>
 -- _char_: `"`, `'` or `#`
 function insert_heredoc(char)
@@ -129,28 +139,29 @@ end
 
 -- ## Key Commands
 
--- CoffeeScript-specific key commands.
+-- CoffeeScript-specific key commands.<br>
+-- On the Mac the `Command` key is used instead of `Alt`.
 _G.keys.coffeescript = {
-  -- __Alt+L, M__: Open this module for editing.
+  -- `Alt/⌘`+`L`, `M` Open this module for editing.
   al = {
     m = { io.open_file,
           (_USERHOME..'/modules/coffeescript/init.lua'):iconv('UTF-8', _CHARSET) },
     },
-  -- __Ctrl+I__: (Windows and Linux) Autocomplete symbol.<br>
-  -- __Ctrl+Esc__: (Mac OS X) Autocomplete symbol.
+  -- `Ctrl`+`I`: (Windows and Linux) Autocomplete symbol.<br>
+  -- `Ctrl`+`Esc`: (Mac OS X) Autocomplete symbol.
   [not OSX and 'ci' or 'cesc'] = { sense.complete, sense },
-  -- __Ctrl+H__: Show documentation for the selected symbol or the symbol under
+  -- `Ctrl`+`H`: Show documentation for the selected symbol or the symbol under
   --   the caret.
   ch = { sense.show_apidoc, sense },
-  -- __Ctrl+J__: Insert clipboard contents enclosed in backticks for raw
+  -- `Ctrl`+`J` Insert clipboard contents enclosed in backticks for raw
   --   JavaScript.
   cj =  insert_raw_js,
   ['\n'] = indent,
-  -- __Alt+"__: Insert Heredoc.
+  -- `Alt/⌘`+`"` Insert heredoc.
   ['a"'] = { insert_heredoc, '"' },
-    -- __Alt+'__: Insert Heredoc.
+    -- `Alt/⌘`+`'` Insert heredoc.
   ["a'"] = { insert_heredoc, "'" },
-    -- __Alt+#__: Insert Block comment.
+    -- `Alt/⌘`+`#`: Insert block comment.
   ['a#'] = { insert_heredoc, '#' },
 }
 -- __.__: When to the right of a known symbol, show an autocompletion list of
@@ -161,8 +172,8 @@ _G.keys.coffeescript = {
 -- Container for Coffeescript-specific snippets.
 if type(_G.snippets) == 'table' then
   _G.snippets.coffeescript = {
-    -- Bound functions.
-    bfun = "%1((%2(args))) =>\n\t",
+    -- Bound function.
+    bfun = "%1((%2(args)) )=>\n\t%0",
     -- Class.
     cla = [[
 class %1(ClassName)%2( extends %3(Ancestor))
