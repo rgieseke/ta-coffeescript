@@ -9,7 +9,7 @@
 -- [Textmate bundle](https://github.com/jashkenas/coffee-script-tmbundle).
 --
 -- The source is on
--- [GitHub](https://github.com/rgieseke/textadept-coffeescript),
+-- [GitHub](https://github.com/rgieseke/ta-coffeescript),
 -- released under the
 -- [MIT license](http://www.opensource.org/licenses/mit-license.php).
 --
@@ -143,30 +143,30 @@ end
 -- CoffeeScript-specific key commands.<br>
 -- On the Mac the `Command` key is used instead of `Alt`.
 _G.keys.coffeescript = {
-  -- `Alt/⌘`+`L`, `M` Open this module for editing.
+  -- Open this module for editing: `Alt/⌘`+`L`, `M`
   al = {
     m = { io.open_file,
           (_USERHOME..'/modules/coffeescript/init.lua'):iconv('UTF-8', _CHARSET) },
     },
-  -- `Ctrl`+`I`: (Windows and Linux) Autocomplete symbol.<br>
-  -- `Ctrl`+`Esc`: (Mac OS X) Autocomplete symbol.
+  -- Autocomplete symbol (Windows and Linux): `Ctrl`+`I`: <br>
+  -- Autocomplete symbol (Mac OS X): `Ctrl`+`Esc`
   [not OSX and 'ci' or 'cesc'] = { sense.complete, sense },
-  -- `Ctrl`+`H`: Show documentation for the selected symbol or the symbol under
-  --   the caret.
+  -- Show documentation for the selected symbol or the symbol under
+  -- the caret: `Ctrl`+`H`
   ch = { sense.show_apidoc, sense },
-  -- `Ctrl`+`J` Insert clipboard contents enclosed in backticks for raw
-  --   JavaScript.
+  -- Insert clipboard contents enclosed in backticks for raw
+  -- JavaScript: `Ctrl`+`J`
   cj =  insert_raw_js,
   ['\n'] = indent,
-  -- `Alt/⌘`+`"` Insert heredoc.
+  -- Insert heredoc: `Alt/⌘`+`"`
   ['a"'] = { insert_heredoc, '"' },
-    -- `Alt/⌘`+`'` Insert heredoc.
+    -- Insert heredoc: `Alt/⌘`+`'`
   ["a'"] = { insert_heredoc, "'" },
-    -- `Alt/⌘`+`#`: Insert block comment.
+    -- Insert block comment: `Alt/⌘`+`#`
   ['a#'] = { insert_heredoc, '#' },
 }
--- __.__: When to the right of a known symbol, show an autocompletion list of
--- fields and functions.
+-- When to the right of a known symbol, show an autocompletion list of
+-- fields and functions: `.`
 
 -- ## Snippets.
 
