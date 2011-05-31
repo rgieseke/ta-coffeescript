@@ -15,18 +15,19 @@
 --
 -- ## Installation
 -- Download a
--- [zipped](https://github.com/rgieseke/textadept-coffeescript/zipball/master)
+-- [zipped](https://github.com/rgieseke/ta-coffeescript/zipball/master)
 -- version and save the contained directory as `.textadept/modules/coffeescript`
 -- or clone the git repository:
 --     cd ~/.textadept/modules
 --     git clone \
---       https://github.com/rgieseke/textadept-coffeescript.git \
---       coffeescript
+--       https://github.com/rgieseke/ta-coffeescript.git coffeescript
 --
 
 module('_m.coffeescript', package.seeall)
 
--- For autocompletion and api support the JavaScript module is required.
+-- For autocompletion support the Javascript module is required.
+-- It's available from
+-- [Bitbucket](https://bitbucket.org/SirAlaran/ta-javascript).
 require('javascript')
 
 
