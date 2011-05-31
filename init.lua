@@ -58,10 +58,10 @@ sense.syntax = js_sense.syntax
 sense.api_files = js_sense.api_files
 sense:add_trigger('.')
 sense.ctags_kinds = js_sense.ctags_kinds
-sense:load_ctags(_USERHOME..'/modules/javascript/tags')
+sense:load_ctags(_HOME..'/modules/javascript/tags')
 sense.get_symbol = js_sense.get_symbol
 
-sense.api_files = { _USERHOME..'/modules/javascript/api' }
+sense.api_files = { _HOME..'/modules/javascript/api' }
 
 -- ## Commands.
 
