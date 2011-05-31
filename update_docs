@@ -1,0 +1,10 @@
+#!/bin/bash
+cd ..
+locco.lua coffeescript/init.lua
+cd coffeescript
+mv docs/init.html docs/index.html
+git add docs/index.html
+git commit -m 'Update docs.'
+doc_sha=$(git ls-tree -d HEAD docs | awk '{print $3}')
+new_commit=$(echo "Auto-update docs." | git commit-tree $doc_sha -p refs/heads/gh-pages)
+git update-ref refs/heads/gh-pages $new_commit
