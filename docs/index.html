@@ -289,6 +289,7 @@ name, see
 <td class="code">
   <div class="highlight"><pre><span class="k">local</span> <span class="k">function</span> <span class="nf">indent</span>()
   <span class="k">local</span> buffer = buffer
+  <span class="k">if</span> buffer:auto_c_active() <span class="k">then</span> <span class="k">return</span> <span class="k">false</span> <span class="k">end</span>
   <span class="k">local</span> current_pos = buffer.current_pos
   <span class="k">local</span> line_num = buffer:line_from_position(current_pos)
   <span class="k">local</span> col = buffer.column[current_pos]
