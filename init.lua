@@ -91,6 +91,7 @@ local control_structure_patterns = {
 -- `for`, etc., but only if at the end of a line.
 local function indent()
   local buffer = buffer
+  if buffer:auto_c_active() then return false end
   local current_pos = buffer.current_pos
   local line_num = buffer:line_from_position(current_pos)
   local col = buffer.column[current_pos]
