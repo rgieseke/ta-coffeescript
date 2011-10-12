@@ -34,6 +34,12 @@ m_editing.comment_string.coffeescript = '# '
 -- Run command (uses file extension).
 m_run.run_command.coffee = 'coffee -p %(filename)'
 
+-- Check the syntax after saving a file using the `--lint` option of the
+-- Coffeescript executable. This requires the jsl
+-- ([JavaScript Lint](http://www.javascriptlint.com/)) command
+-- to be installed.
+CHECK_SYNTAX = true
+
 -- Sets default buffer properties for CoffeeScript files. A default indent of
 -- 4 spaces is used.
 function set_buffer_properties()
@@ -41,6 +47,37 @@ function set_buffer_properties()
 end
 
 -- ## Commands.
+
+-- Check syntax after file saving.
+events.connect(events.FILE_AFTER_SAVE,
+  function() -- show syntax errors as annotations
+    if CHECK_SYNTAX and buffer:get_lexer() == 'coffeescript' then
+      local buffer = buffer
+      buffer:annotation_clear_all()
+      local filename = buffer.filename:iconv(_CHARSET, 'UTF-8')
+      local command = 'coffee -l '..filename
+      local p = io.popen(command..' 2>&1')
+      local out = p:read('*line')
+      p:close()
+      local err_msg = out:match("Error.-, (.+)")
+      if err_msg then
+        local line = err_msg:match('on line (%d+)')
+        -- Make sure the first char of the error message is upper case.
+        err_msg = (err_msg:sub(1, 1)):upper()..err_msg:sub(2)
+        if line then
+          line = line - 1 -- Scintilla line numbers start from 0.
+          buffer.annotation_visible = 2
+          -- If error is off screen, show annotation on the current line.
+          if (line < buffer.first_visible_line) or
+             (line > buffer.first_visible_line + buffer.lines_on_screen) then
+            line = buffer.line_from_position(buffer.current_pos)
+          end
+          buffer.annotation_style[line] = 8 -- error style number
+          buffer:annotation_set_text(line, err_msg)
+        end
+      end
+    end
+  end)
 
 -- Control structures after which indentation should be increased. Loops can
 -- be used as an expression, so the pattern need to start with a variable
