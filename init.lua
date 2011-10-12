@@ -34,9 +34,10 @@ m_editing.comment_string.coffeescript = '# '
 -- Run command (uses file extension).
 m_run.run_command.coffee = 'coffee -p %(filename)'
 
--- Sets default buffer properties for CoffeeScript files.
+-- Sets default buffer properties for CoffeeScript files. A default indent of
+-- 4 spaces is used.
 function set_buffer_properties()
-
+  buffer.indent = 4
 end
 
 -- ## Commands.
