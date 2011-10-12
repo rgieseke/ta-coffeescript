@@ -96,8 +96,8 @@ local control_structure_patterns = {
   '^%s*try',
   '^%s*catch',
   '^%s*finally',
-  '[%-=]>$',
-  '[=:]$'
+  '[%-=]>[\r\n]$',
+  '[=:][\r\n]$'
 }
 
 -- Increase indentation level after new line if line contains `class`,
