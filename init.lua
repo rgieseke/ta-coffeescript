@@ -25,12 +25,6 @@
 
 module('_m.coffeescript', package.seeall)
 
--- For autocompletion support the Javascript module is required.
--- It's available from
--- [Bitbucket](https://bitbucket.org/SirAlaran/ta-javascript).
-require('javascript')
-
-
 -- ## Settings
 
 -- Local variables.
@@ -44,25 +38,6 @@ m_run.run_command.coffee = 'coffee -p %(filename)'
 function set_buffer_properties()
 
 end
-
--- ## Fields
-
--- __sense__:
--- The CoffeeScript Adeptsense.
-
--- ## Adeptsense.
-
--- Load JavaScript adeptsense.
-local js_sense = _m.javascript.sense
-sense = _m.textadept.adeptsense.new('coffeescript')
-sense.syntax = js_sense.syntax
-sense.api_files = js_sense.api_files
-sense:add_trigger('.')
-sense.ctags_kinds = js_sense.ctags_kinds
-sense:load_ctags(_HOME..'/modules/javascript/tags')
-sense.get_symbol = js_sense.get_symbol
-
-sense.api_files = { _HOME..'/modules/javascript/api' }
 
 -- ## Commands.
 
@@ -149,12 +124,6 @@ _G.keys.coffeescript = {
     m = { io.open_file,
           (_USERHOME..'/modules/coffeescript/init.lua'):iconv('UTF-8', _CHARSET) },
     },
-  -- Autocomplete symbol (Windows and Linux): `Ctrl`+`I`: <br>
-  -- Autocomplete symbol (Mac OS X): `Ctrl`+`Esc`
-  [not OSX and 'ci' or 'cesc'] = { sense.complete, sense },
-  -- Show documentation for the selected symbol or the symbol under
-  -- the caret: `Ctrl`+`H`
-  ch = { sense.show_apidoc, sense },
   -- Insert clipboard contents enclosed in backticks for raw
   -- JavaScript: `Ctrl`+`J`
   cj =  insert_raw_js,
