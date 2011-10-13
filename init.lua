@@ -1,6 +1,6 @@
 --![CoffeeScript](logo.png)
 
--- The coffeescript module for the
+-- A `coffeescript` module for the
 -- [Textadept](http://code.google.com/p/textadept/) editor.
 -- It provides utilities for editing
 -- [CoffeeScript](http://jashkenas.github.com/coffee-script/) code.<br>
