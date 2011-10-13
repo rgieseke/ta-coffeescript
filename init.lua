@@ -157,8 +157,9 @@ end
 -- CoffeeScript-specific key commands.<br>
 -- On the Mac the `Command` key is used instead of `Alt`.
 _G.keys.coffeescript = {
-  -- Open this module for editing: `Alt/⌘`+`L`, `M`
-  al = {
+  -- Open this module for editing:<br>
+  --  Language module prefix (usually `Alt/⌘`+`L`), `M`
+  [keys.LANGUAGE_MODULE_PREFIX] = {
     m = { io.open_file,
           (_USERHOME..'/modules/coffeescript/init.lua'):iconv('UTF-8', _CHARSET) },
     },
@@ -166,15 +167,13 @@ _G.keys.coffeescript = {
   -- JavaScript: `Ctrl`+`J`
   cj =  insert_raw_js,
   ['\n'] = indent,
-  -- Insert heredoc: `Alt/⌘`+`"`
-  ['a"'] = { insert_heredoc, '"' },
-    -- Insert heredoc: `Alt/⌘`+`'`
-  ["a'"] = { insert_heredoc, "'" },
-    -- Insert block comment: `Alt/⌘`+`#`
-  ['a#'] = { insert_heredoc, '#' },
+  -- Insert heredoc: `Ctrl`+`Alt/⌘`+`"`
+  [not OSX and 'ca"' or 'cm"'] = { insert_heredoc, '"' },
+    -- Insert heredoc: `Ctrl`+`Alt/⌘`+`'`
+  [not OSX and "ca'" or "cm'"] = { insert_heredoc, "'" },
+    -- Insert block comment: `Ctrl`+`#`
+  ['c#'] = { insert_heredoc, '#' },
 }
--- When to the right of a known symbol, show an autocompletion list of
--- fields and functions: `.`
 
 -- ## Snippets.
 
