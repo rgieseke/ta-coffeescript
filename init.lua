@@ -23,12 +23,12 @@
 --       https://github.com/rgieseke/ta-coffeescript.git coffeescript
 --
 
-module('_m.coffeescript', package.seeall)
+local M = {}
 
 -- ## Settings
 
 -- Local variables.
-local m_editing, m_run = _m.textadept.editing, _m.textadept.run
+local m_editing, m_run = _M.textadept.editing, _M.textadept.run
 -- Comment string (uses lexer name).
 m_editing.comment_string.coffeescript = '# '
 -- Run command (uses file extension).
@@ -38,11 +38,11 @@ m_run.run_command.coffee = 'coffee -p %(filename)'
 -- Coffeescript executable. This requires the jsl
 -- ([JavaScript Lint](http://www.javascriptlint.com/)) command
 -- to be installed.
-CHECK_SYNTAX = true
+M.CHECK_SYNTAX = true
 
 -- Sets default buffer properties for CoffeeScript files. A default indent of
 -- 4 spaces is used.
-function set_buffer_properties()
+function M.set_buffer_properties()
   buffer.indent = 4
 end
 
@@ -51,7 +51,7 @@ end
 -- Check syntax after file saving.
 events.connect(events.FILE_AFTER_SAVE,
   function() -- show syntax errors as annotations
-    if CHECK_SYNTAX and buffer:get_lexer() == 'coffeescript' then
+    if M.CHECK_SYNTAX and buffer:get_lexer() == 'coffeescript' then
       local buffer = buffer
       buffer:annotation_clear_all()
       local filename = buffer.filename:iconv(_CHARSET, 'UTF-8')
@@ -128,7 +128,7 @@ local function indent()
 end
 
 -- Insert clipboard content enclosed in backticks for raw JavaScript.
-function insert_raw_js(args)
+function M.insert_raw_js(args)
   local buffer = buffer
   buffer:begin_undo_action()
   buffer:add_text('``')
@@ -141,7 +141,7 @@ end
 -- Insert [heredoc](http://jashkenas.github.com/coffee-script/#strings).<br>
 -- Parameter:<br>
 -- _char_: `"`, `'` or `#`
-function insert_heredoc(char)
+function M.insert_heredoc(char)
   local buffer = buffer
   buffer:begin_undo_action()
   local current_pos = buffer.current_pos
@@ -156,7 +156,7 @@ end
 
 -- CoffeeScript-specific key commands.<br>
 -- On the Mac the `Command` key is used instead of `Alt`.
-_G.keys.coffeescript = {
+keys.coffeescript = {
   -- Open this module for editing:<br>
   --  Language module prefix (usually `Alt/⌘`+`L`), `M`
   [keys.LANGUAGE_MODULE_PREFIX] = {
@@ -168,18 +168,18 @@ _G.keys.coffeescript = {
   cj =  insert_raw_js,
   ['\n'] = indent,
   -- Insert heredoc: `Ctrl`+`Alt/⌘`+`"`
-  [not OSX and 'ca"' or 'cm"'] = { insert_heredoc, '"' },
+  [not OSX and 'ca"' or 'cm"'] = { M.insert_heredoc, '"' },
     -- Insert heredoc: `Ctrl`+`Alt/⌘`+`'`
-  [not OSX and "ca'" or "cm'"] = { insert_heredoc, "'" },
+  [not OSX and "ca'" or "cm'"] = { M.insert_heredoc, "'" },
     -- Insert block comment: `Ctrl`+`#`
-  ['c#'] = { insert_heredoc, '#' },
+  ['c#'] = { M.insert_heredoc, '#' },
 }
 
 -- ## Snippets.
 
 -- Container for Coffeescript-specific snippets.
-if type(_G.snippets) == 'table' then
-  _G.snippets.coffeescript = {
+if type(snippets) == 'table' then
+  snippets.coffeescript = {
     -- Bound function.
     bfun = "%1((%2(args)) )=>\n\t%0",
     -- Class.
@@ -238,3 +238,5 @@ catch %2(error)
   req = "require",
   }
 end
+
+return M
