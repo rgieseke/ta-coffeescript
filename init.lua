@@ -1,7 +1,7 @@
 --![CoffeeScript](logo.png)
 
 -- A `coffeescript` module for the
--- [Textadept](http://code.google.com/p/textadept/) editor.
+-- [Textadept](http://foicica.com/textadept/) editor.
 -- It provides utilities for editing
 -- [CoffeeScript](http://jashkenas.github.com/coffee-script/) code.<br>
 -- It contains additional key commands, indentation support and
@@ -14,10 +14,7 @@
 -- [MIT license](http://www.opensource.org/licenses/mit-license.php).
 --
 -- ## Installation
--- Download a
--- [zipped](https://github.com/rgieseke/ta-coffeescript/zipball/master)
--- version and save the contained directory as `.textadept/modules/coffeescript`
--- or clone the git repository:
+-- Clone the git repository to your `.textadept` directory:
 --     cd ~/.textadept/modules
 --     git clone \
 --       https://github.com/rgieseke/ta-coffeescript.git coffeescript

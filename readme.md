@@ -1,4 +1,4 @@
-## CoffeeScript module for the [Textadept](http://code.google.com/p/textadept/) editor
+## CoffeeScript module for the [Textadept](http://foicica.com/textadept/) editor
 
 Snippets and key commands are described in the
 [annotated source](http://rgieseke.github.com/ta-coffeescript/).
