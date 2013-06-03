@@ -156,9 +156,9 @@ to be installed.</p>
 
 </td>
 <td class="code">
-  <div class="highlight"><pre><span class="k">function</span> <span class="nf">M.set_buffer_properties</span>()
-  buffer.indent = 4
-<span class="k">end</span>
+  <div class="highlight"><pre>events.connect(events.LANGUAGE_MODULE_LOADED, <span class="k">function</span>(lang)
+  buffer.tab_width = 4
+<span class="k">end</span>)
 </pre></div>
 </td>
 </tr><tr id="section-9">
