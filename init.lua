@@ -39,9 +39,9 @@ M.CHECK_SYNTAX = true
 
 -- Sets default buffer properties for CoffeeScript files. A default indent of
 -- 4 spaces is used.
-function M.set_buffer_properties()
-  buffer.indent = 4
-end
+events.connect(events.LANGUAGE_MODULE_LOADED, function(lang)
+  buffer.tab_width = 4
+end)
 
 -- ## Commands.
 
