@@ -52,25 +52,23 @@ events.connect(events.FILE_AFTER_SAVE,
       local buffer = buffer
       buffer:annotation_clear_all()
       local filename = buffer.filename:iconv(_CHARSET, 'UTF-8')
-      local command = 'coffee -l '..filename
+      local command = 'coffee -c -l '..filename
       local p = io.popen(command..' 2>&1')
-      local out = p:read('*line')
+      local out = p:read('*all')
       p:close()
-      local err_msg = out:match("Error.-, (.+)")
-      if err_msg then
-        local line = err_msg:match('on line (%d+)')
-        -- Make sure the first char of the error message is upper case.
-        err_msg = (err_msg:sub(1, 1)):upper()..err_msg:sub(2)
+      if out then
+        local line, msg = out:match('.-:(%d+):%d-:(.+)')
         if line then
           line = line - 1 -- Scintilla line numbers start from 0.
           buffer.annotation_visible = 2
           -- If error is off screen, show annotation on the current line.
           if (line < buffer.first_visible_line) or
              (line > buffer.first_visible_line + buffer.lines_on_screen) then
+            msg = 'line '..(line + 1)..'\n'..msg
             line = buffer.line_from_position(buffer.current_pos)
           end
           buffer.annotation_style[line] = 8 -- error style number
-          buffer:annotation_set_text(line, err_msg)
+          buffer.annotation_text[line] = msg
         end
       end
     end
