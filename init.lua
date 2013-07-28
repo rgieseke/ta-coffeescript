@@ -3,7 +3,7 @@
 -- A `coffeescript` module for the
 -- [Textadept](http://foicica.com/textadept/) editor.
 -- It provides utilities for editing
--- [CoffeeScript](http://jashkenas.github.com/coffee-script/) code.<br>
+-- [CoffeeScript](http://coffeescript.org/) code.<br>
 -- It contains additional key commands, indentation support and
 -- snippets, the latter based on Jeremy Ashkenas'
 -- [Textmate bundle](https://github.com/jashkenas/coffee-script-tmbundle).
@@ -79,7 +79,7 @@ events.connect(events.FILE_AFTER_SAVE,
 -- Control structures after which indentation should be increased. Loops can
 -- be used as an expression, so the pattern need to start with a variable
 -- name, see
--- [Loops and Comprehensions](http://jashkenas.github.com/coffee-script/#loops).
+-- [Loops and Comprehensions](http://coffeescript.org/#loops).
 local control_structure_patterns = {
   '^%s*class',
   '^%s*%w*%s?=?%s?for',
@@ -135,7 +135,7 @@ function M.insert_raw_js(args)
   buffer:end_undo_action()
 end
 
--- Insert [heredoc](http://jashkenas.github.com/coffee-script/#strings).<br>
+-- Insert [heredoc](http://coffeescript.org/#strings).<br>
 -- Parameter:<br>
 -- _char_: `"`, `'` or `#`
 function M.insert_heredoc(char)
