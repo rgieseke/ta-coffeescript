@@ -32,7 +32,7 @@ m_editing.comment_string.coffeescript = '# '
 m_run.run_command.coffee = 'coffee -pb %(filename)'
 
 -- Check the syntax after saving a file using the `--lint` option of the
--- Coffeescript executable. This requires the jsl
+-- CoffeeScript executable. This requires the jsl
 -- ([JavaScript Lint](http://www.javascriptlint.com/)) command
 -- to be installed.
 M.CHECK_SYNTAX = true
@@ -174,7 +174,7 @@ keys.coffeescript = {
 
 -- ## Snippets.
 
--- Container for Coffeescript-specific snippets.
+-- Container for CoffeeScript-specific snippets.
 if type(snippets) == 'table' then
   snippets.coffeescript = {
     -- Bound function.
