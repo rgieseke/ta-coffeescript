@@ -40,7 +40,7 @@ M.CHECK_SYNTAX = true
 -- Sets default buffer properties for CoffeeScript files. A default indent of
 -- 4 spaces is used.
 events.connect(events.LANGUAGE_MODULE_LOADED, function(lang)
-  buffer.tab_width = 4
+  if lang == 'coffeescript' then buffer.tab_width = 4 end
 end)
 
 -- ## Commands.
@@ -147,6 +147,7 @@ function M.insert_heredoc(char)
   buffer:end_undo_action()
 end
 
+
 -- ## Key Commands
 
 -- CoffeeScript-specific key commands.<br>
@@ -164,9 +165,9 @@ keys.coffeescript = {
   ['\n'] = indent,
   -- Insert heredoc: `Ctrl`+`Alt/⌘`+`"`
   [not OSX and 'ca"' or 'cm"'] = { M.insert_heredoc, '"' },
-    -- Insert heredoc: `Ctrl`+`Alt/⌘`+`'`
+  -- Insert heredoc: `Ctrl`+`Alt/⌘`+`'`
   [not OSX and "ca'" or "cm'"] = { M.insert_heredoc, "'" },
-    -- Insert block comment: `Ctrl`+`#`
+  -- Insert block comment: `Ctrl`+`#`
   ['c#'] = { M.insert_heredoc, '#' },
 }
 
