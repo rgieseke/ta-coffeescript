@@ -24,13 +24,6 @@ local M = {}
 
 -- ## Settings
 
--- Local variables.
-local m_editing, m_run = _M.textadept.editing, _M.textadept.run
--- Comment string (uses lexer name).
-m_editing.comment_string.coffeescript = '# '
--- Run command (uses file extension).
-m_run.run_command.coffee = 'coffee -pb %(filename)'
-
 -- Check the syntax after saving a file using the `--lint` option of the
 -- CoffeeScript executable. This requires the jsl
 -- ([JavaScript Lint](http://www.javascriptlint.com/)) command
