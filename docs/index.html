@@ -85,42 +85,6 @@ git clone \
   <div class="pilwrap">
     <a class="pilcrow" href="#section-4">&#182;</a>
   </div>
-  <p>Local variables.</p>
-
-</td>
-<td class="code">
-  <div class="highlight"><pre><span class="k">local</span> m_editing, m_run = _M.textadept.editing, _M.textadept.run
-</pre></div>
-</td>
-</tr><tr id="section-5">
-<td class="docs">
-  <div class="pilwrap">
-    <a class="pilcrow" href="#section-5">&#182;</a>
-  </div>
-  <p>Comment string (uses lexer name).</p>
-
-</td>
-<td class="code">
-  <div class="highlight"><pre>m_editing.comment_string.coffeescript = <span class="s">'# '</span>
-</pre></div>
-</td>
-</tr><tr id="section-6">
-<td class="docs">
-  <div class="pilwrap">
-    <a class="pilcrow" href="#section-6">&#182;</a>
-  </div>
-  <p>Run command (uses file extension).</p>
-
-</td>
-<td class="code">
-  <div class="highlight"><pre>m_run.run_command.coffee = <span class="s">'coffee -pb &#37;(filename)'</span>
-</pre></div>
-</td>
-</tr><tr id="section-7">
-<td class="docs">
-  <div class="pilwrap">
-    <a class="pilcrow" href="#section-7">&#182;</a>
-  </div>
   <p>Check the syntax after saving a file using the <code>--lint</code> option of the
 CoffeeScript executable. This requires the jsl
 (<a href="http://www.javascriptlint.com/">JavaScript Lint</a>) command
@@ -131,25 +95,25 @@ to be installed.</p>
   <div class="highlight"><pre>M.CHECK_SYNTAX = <span class="k">true</span>
 </pre></div>
 </td>
-</tr><tr id="section-8">
+</tr><tr id="section-5">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-8">&#182;</a>
+    <a class="pilcrow" href="#section-5">&#182;</a>
   </div>
   <p>Sets default buffer properties for CoffeeScript files. A default indent of
 4 spaces is used.</p>
 
 </td>
 <td class="code">
-  <div class="highlight"><pre>events.connect(events.LANGUAGE_MODULE_LOADED, <span class="k">function</span>(lang)
+  <div class="highlight"><pre>events.connect(events.LEXER_LOADED, <span class="k">function</span>(lang)
   <span class="k">if</span> lang == <span class="s">'coffeescript'</span> <span class="k">then</span> buffer.tab_width = 4 <span class="k">end</span>
 <span class="k">end</span>)
 </pre></div>
 </td>
-</tr><tr id="section-9">
+</tr><tr id="section-6">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-9">&#182;</a>
+    <a class="pilcrow" href="#section-6">&#182;</a>
   </div>
   <h2>Commands.</h2>
 
@@ -158,10 +122,10 @@ to be installed.</p>
   <div class="highlight"><pre>
 </pre></div>
 </td>
-</tr><tr id="section-10">
+</tr><tr id="section-7">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-10">&#182;</a>
+    <a class="pilcrow" href="#section-7">&#182;</a>
   </div>
   <p>Check syntax after file saving.</p>
 
@@ -184,10 +148,10 @@ to be installed.</p>
 </span>          buffer.annotation_visible = 2
 </pre></div>
 </td>
-</tr><tr id="section-11">
+</tr><tr id="section-8">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-11">&#182;</a>
+    <a class="pilcrow" href="#section-8">&#182;</a>
   </div>
   <p>If error is off screen, show annotation on the current line.</p>
 
@@ -206,10 +170,10 @@ to be installed.</p>
   <span class="k">end</span>)
 </pre></div>
 </td>
-</tr><tr id="section-12">
+</tr><tr id="section-9">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-12">&#182;</a>
+    <a class="pilcrow" href="#section-9">&#182;</a>
   </div>
   <p>Control structures after which indentation should be increased. Loops can
 be used as an expression, so the pattern need to start with a variable
@@ -236,10 +200,10 @@ name, see
 }
 </pre></div>
 </td>
-</tr><tr id="section-13">
+</tr><tr id="section-10">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-13">&#182;</a>
+    <a class="pilcrow" href="#section-10">&#182;</a>
   </div>
   <p>Increase indentation level after new line if line contains <code>class</code>,
 <code>for</code>, etc., but only if at the end of a line.</p>
@@ -272,10 +236,10 @@ name, see
 <span class="k">end</span>
 </pre></div>
 </td>
-</tr><tr id="section-14">
+</tr><tr id="section-11">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-14">&#182;</a>
+    <a class="pilcrow" href="#section-11">&#182;</a>
   </div>
   <p>Insert clipboard content enclosed in backticks for raw JavaScript.</p>
 
@@ -292,10 +256,10 @@ name, see
 <span class="k">end</span>
 </pre></div>
 </td>
-</tr><tr id="section-15">
+</tr><tr id="section-12">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-15">&#182;</a>
+    <a class="pilcrow" href="#section-12">&#182;</a>
   </div>
   <p>Insert <a href="http://coffeescript.org/#strings">heredoc</a>.<br>
 Parameter:<br>
@@ -316,10 +280,10 @@ Parameter:<br>
 
 </pre></div>
 </td>
-</tr><tr id="section-16">
+</tr><tr id="section-13">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-16">&#182;</a>
+    <a class="pilcrow" href="#section-13">&#182;</a>
   </div>
   <h2>Key Commands</h2>
 
@@ -328,10 +292,10 @@ Parameter:<br>
   <div class="highlight"><pre>
 </pre></div>
 </td>
-</tr><tr id="section-17">
+</tr><tr id="section-14">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-17">&#182;</a>
+    <a class="pilcrow" href="#section-14">&#182;</a>
   </div>
   <p>CoffeeScript-specific key commands.<br>
 On the Mac the <code>Command</code> key is used instead of <code>Alt</code>.</p>
@@ -341,10 +305,10 @@ On the Mac the <code>Command</code> key is used instead of <code>Alt</code>.</p>
   <div class="highlight"><pre>keys.coffeescript = {
 </pre></div>
 </td>
-</tr><tr id="section-18">
+</tr><tr id="section-15">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-18">&#182;</a>
+    <a class="pilcrow" href="#section-15">&#182;</a>
   </div>
   <p>Open this module for editing:<br>
  Language module prefix (usually <code>Alt/⌘</code>+<code>L</code>), <code>M</code></p>
@@ -357,10 +321,10 @@ On the Mac the <code>Command</code> key is used instead of <code>Alt</code>.</p>
     },
 </pre></div>
 </td>
-</tr><tr id="section-19">
+</tr><tr id="section-16">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-19">&#182;</a>
+    <a class="pilcrow" href="#section-16">&#182;</a>
   </div>
   <p>Insert clipboard contents enclosed in backticks for raw
 JavaScript: <code>Ctrl</code>+<code>J</code></p>
@@ -371,10 +335,10 @@ JavaScript: <code>Ctrl</code>+<code>J</code></p>
   [<span class="s">'\n'</span>] = indent,
 </pre></div>
 </td>
-</tr><tr id="section-20">
+</tr><tr id="section-17">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-20">&#182;</a>
+    <a class="pilcrow" href="#section-17">&#182;</a>
   </div>
   <p>Insert heredoc: <code>Ctrl</code>+<code>Alt/⌘</code>+<code>"</code></p>
 
@@ -383,10 +347,10 @@ JavaScript: <code>Ctrl</code>+<code>J</code></p>
   <div class="highlight"><pre>  [<span class="o">not</span> OSX <span class="o">and</span> <span class="s">'ca"'</span> <span class="o">or</span> <span class="s">'cm"'</span>] = { M.insert_heredoc, <span class="s">'"'</span> },
 </pre></div>
 </td>
-</tr><tr id="section-21">
+</tr><tr id="section-18">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-21">&#182;</a>
+    <a class="pilcrow" href="#section-18">&#182;</a>
   </div>
   <p>Insert heredoc: <code>Ctrl</code>+<code>Alt/⌘</code>+<code>'</code></p>
 
@@ -395,10 +359,10 @@ JavaScript: <code>Ctrl</code>+<code>J</code></p>
   <div class="highlight"><pre>  [<span class="o">not</span> OSX <span class="o">and</span> <span class="s">"ca'"</span> <span class="o">or</span> <span class="s">"cm'"</span>] = { M.insert_heredoc, <span class="s">"'"</span> },
 </pre></div>
 </td>
-</tr><tr id="section-22">
+</tr><tr id="section-19">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-22">&#182;</a>
+    <a class="pilcrow" href="#section-19">&#182;</a>
   </div>
   <p>Insert block comment: <code>Ctrl</code>+<code>#</code></p>
 
@@ -408,10 +372,10 @@ JavaScript: <code>Ctrl</code>+<code>J</code></p>
 }
 </pre></div>
 </td>
-</tr><tr id="section-23">
+</tr><tr id="section-20">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-23">&#182;</a>
+    <a class="pilcrow" href="#section-20">&#182;</a>
   </div>
   <h2>Snippets.</h2>
 
@@ -420,10 +384,10 @@ JavaScript: <code>Ctrl</code>+<code>J</code></p>
   <div class="highlight"><pre>
 </pre></div>
 </td>
-</tr><tr id="section-24">
+</tr><tr id="section-21">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-24">&#182;</a>
+    <a class="pilcrow" href="#section-21">&#182;</a>
   </div>
   <p>Container for CoffeeScript-specific snippets.</p>
 
@@ -433,10 +397,10 @@ JavaScript: <code>Ctrl</code>+<code>J</code></p>
   snippets.coffeescript = {
 </pre></div>
 </td>
-</tr><tr id="section-25">
+</tr><tr id="section-22">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-25">&#182;</a>
+    <a class="pilcrow" href="#section-22">&#182;</a>
   </div>
   <p>Bound function.</p>
 
@@ -445,10 +409,10 @@ JavaScript: <code>Ctrl</code>+<code>J</code></p>
   <div class="highlight"><pre>    bfun = <span class="s">"&#37;1((&#37;2(args)) )=&gt;\n\t&#37;0"</span>,
 </pre></div>
 </td>
-</tr><tr id="section-26">
+</tr><tr id="section-23">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-26">&#182;</a>
+    <a class="pilcrow" href="#section-23">&#182;</a>
   </div>
   <p>Class.</p>
 
@@ -461,10 +425,10 @@ class &#37;1(ClassName)&#37;2( extends &#37;3(Ancestor))
 	&#37;0]]</span>,
 </pre></div>
 </td>
-</tr><tr id="section-27">
+</tr><tr id="section-24">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-27">&#182;</a>
+    <a class="pilcrow" href="#section-24">&#182;</a>
   </div>
   <p>Else if.</p>
 
@@ -473,10 +437,10 @@ class &#37;1(ClassName)&#37;2( extends &#37;3(Ancestor))
   <div class="highlight"><pre>    elif = <span class="s">"else if &#37;1(condition)\n\t"</span>,
 </pre></div>
 </td>
-</tr><tr id="section-28">
+</tr><tr id="section-25">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-28">&#182;</a>
+    <a class="pilcrow" href="#section-25">&#182;</a>
   </div>
   <p>Function.</p>
 
@@ -487,10 +451,10 @@ class &#37;1(ClassName)&#37;2( extends &#37;3(Ancestor))
 	&#37;0]]</span>,
 </pre></div>
 </td>
-</tr><tr id="section-29">
+</tr><tr id="section-26">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-29">&#182;</a>
+    <a class="pilcrow" href="#section-26">&#182;</a>
   </div>
   <p>If &hellip; else.</p>
 
@@ -503,10 +467,10 @@ else
 	&#37;0]]</span>,
 </pre></div>
 </td>
-</tr><tr id="section-30">
+</tr><tr id="section-27">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-30">&#182;</a>
+    <a class="pilcrow" href="#section-27">&#182;</a>
   </div>
   <p>If.</p>
 
@@ -517,10 +481,10 @@ if &#37;1(condition)
 	&#37;0]]</span>,
 </pre></div>
 </td>
-</tr><tr id="section-31">
+</tr><tr id="section-28">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-31">&#182;</a>
+    <a class="pilcrow" href="#section-28">&#182;</a>
   </div>
   <p>Interpolated code in double-quoted strings.</p>
 
@@ -529,10 +493,10 @@ if &#37;1(condition)
   <div class="highlight"><pre>  [<span class="s">'#'</span>] = <span class="s">"#{ &#37;0 }"</span>,
 </pre></div>
 </td>
-</tr><tr id="section-32">
+</tr><tr id="section-29">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-32">&#182;</a>
+    <a class="pilcrow" href="#section-29">&#182;</a>
   </div>
   <p>Array comprehension.</p>
 
@@ -541,10 +505,10 @@ if &#37;1(condition)
   <div class="highlight"><pre>  fora = <span class="s">"for &#37;1(name) in &#37;2(array)\n\t&#37;0"</span>,
 </pre></div>
 </td>
-</tr><tr id="section-33">
+</tr><tr id="section-30">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-33">&#182;</a>
+    <a class="pilcrow" href="#section-30">&#182;</a>
   </div>
   <p>Object comprehension.</p>
 
@@ -553,10 +517,10 @@ if &#37;1(condition)
   <div class="highlight"><pre>  foro = <span class="s">"for &#37;1(key), &#37;2(value) of &#37;3(Object)\n\t&#37;0"</span>,
 </pre></div>
 </td>
-</tr><tr id="section-34">
+</tr><tr id="section-31">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-34">&#182;</a>
+    <a class="pilcrow" href="#section-31">&#182;</a>
   </div>
   <p>Range comprehension (exclusive).</p>
 
@@ -565,10 +529,10 @@ if &#37;1(condition)
   <div class="highlight"><pre>  forrex = <span class="s">"for &#37;1(name) in [&#37;2(start)...&#37;3(finish)]&#37;4( by &#37;5(step))\n\t&#37;0"</span>,
 </pre></div>
 </td>
-</tr><tr id="section-35">
+</tr><tr id="section-32">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-35">&#182;</a>
+    <a class="pilcrow" href="#section-32">&#182;</a>
   </div>
   <p>Range comprehension (inclusive).</p>
 
@@ -579,10 +543,10 @@ for &#37;1(name) in [&#37;2(start)..&#37;3(finish)]&#37;4( by &#37;5(step))
 	&#37;0]]</span>,
 </pre></div>
 </td>
-</tr><tr id="section-36">
+</tr><tr id="section-33">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-36">&#182;</a>
+    <a class="pilcrow" href="#section-33">&#182;</a>
   </div>
   <p>Switch.</p>
 
@@ -594,10 +558,10 @@ switch &#37;1(object)
 		&#37;0]]</span>,
 </pre></div>
 </td>
-</tr><tr id="section-37">
+</tr><tr id="section-34">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-37">&#182;</a>
+    <a class="pilcrow" href="#section-34">&#182;</a>
   </div>
   <p>Ternary if.</p>
 
@@ -606,10 +570,10 @@ switch &#37;1(object)
   <div class="highlight"><pre>  ifte = <span class="s">"if &#37;1(condition) then &#37;2(value) else &#37;0"</span>,
 </pre></div>
 </td>
-</tr><tr id="section-38">
+</tr><tr id="section-35">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-38">&#182;</a>
+    <a class="pilcrow" href="#section-35">&#182;</a>
   </div>
   <p>Try &hellip; catch.</p>
 
@@ -622,10 +586,10 @@ catch &#37;2(error)
 	&#37;0]]</span>,
 </pre></div>
 </td>
-</tr><tr id="section-39">
+</tr><tr id="section-36">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-39">&#182;</a>
+    <a class="pilcrow" href="#section-36">&#182;</a>
   </div>
   <p>Unless.</p>
 
@@ -634,10 +598,10 @@ catch &#37;2(error)
   <div class="highlight"><pre>  unl = <span class="s">"&#37;1(action) unless &#37;0"</span>,
 </pre></div>
 </td>
-</tr><tr id="section-40">
+</tr><tr id="section-37">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-40">&#182;</a>
+    <a class="pilcrow" href="#section-37">&#182;</a>
   </div>
   <p>Console.log.</p>
 
@@ -647,10 +611,10 @@ catch &#37;2(error)
   c = <span class="s">"console.log"</span>,
 </pre></div>
 </td>
-</tr><tr id="section-41">
+</tr><tr id="section-38">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-41">&#182;</a>
+    <a class="pilcrow" href="#section-38">&#182;</a>
   </div>
   <p>Require.</p>
 
